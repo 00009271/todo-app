@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }))
 //runing the app on port:
 app.listen(9271, (err) => {
     if (err) throw err
-    console.log(` task App runes on port 9271 http://localhost:9271`)
+    console.log(`App runes on port 9271 http://localhost:9271`)
 })
 //id generator
 function id () {

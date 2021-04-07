@@ -1,11 +1,11 @@
 extends main.pug
 
-block number1 
+block one 
   if error
     p.error Please write the Task
 
   if success
-    p.success Perfect 
+    p.success Perfect! Keep Trying. 
 
   if deleted
     p.success Task is Deleted
@@ -17,11 +17,7 @@ block number1
   div.tasks
     if tasks.length
       each task in tasks  
-        p.task 
-          if task.done
-            a.done(href=`/${ task.id}/update`) #{ task.description }
-          else 
-            a.undone(href=`/${ task.id}/update`) #{ task.description }
-          a.delete(href=`/${ task.id }/delete`) Delete
+        p.task #{ task.description }
+           a.delete(href=`/${ task.id }/delete`) Delete
     else
       p.task Any Task Found
