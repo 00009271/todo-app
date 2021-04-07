@@ -1,23 +1,25 @@
 extends main.pug
 
 block one 
-  if error
-    p.error Please write the Task
+     
+    h1
+    if error
+        p.error Please write the Task
 
-  if success
-    p.success Perfect! Keep Trying. 
+    if success
+        p.success Perfect! Keep Trying. 
 
-  if deleted
-    p.success Task is Deleted
+    if deleted
+        p.success Task is Deleted
+    .task 
+        form.form(action='/create' method='POST')
+            input.input(type='text' placeholder='Add  YOUR Task description' name='task')
+            button.btn Create  
 
-  form.form(action='/create' method='POST')
-    input.input(type='text' placeholder='Add  YOUR Task description' name='task')
-    button.btn Create  
-
-  div.tasks
-    if tasks.length
-      each task in tasks  
-        p.task #{ task.text }
-           a.delete(href=`/${ task.id }/delete`) Delete
-    else
-      p.task Any Task Found
+        div.tasks
+            if tasks.length
+                each task in tasks  
+                    p.task-content #{ task.text }
+                    a.delete(href=`/${ task.id }/delete`) Delete
+                else
+                    p.task-nf Any Task Found
