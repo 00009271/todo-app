@@ -17,7 +17,7 @@ block one
   div.tasks
     if tasks.length
       each task in tasks  
-        p.task #{ task.description }
+        p.task #{ task.text }
            a.delete(href=`/${ task.id }/delete`) Delete
     else
       p.task Any Task Found

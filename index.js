@@ -49,7 +49,7 @@ app.post('/create', (req, res) => {
   
         const task = {
           id: id(),
-          description: form_data.task,
+          text: form_data.task,
           done: false
         }
   
