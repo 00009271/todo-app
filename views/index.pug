@@ -1,0 +1,27 @@
+extends main.pug
+
+block number1 
+  if error
+    p.error Please write the Task
+
+  if success
+    p.success Perfect 
+
+  if deleted
+    p.success Task is Deleted
+
+  form.form(action='/create' method='POST')
+    input.input(type='text' placeholder='Add  YOUR Task description' name='task')
+    button.btn Create  
+
+  div.tasks
+    if tasks.length
+      each task in tasks  
+        p.task 
+          if task.done
+            a.done(href=`/${ task.id}/update`) #{ task.description }
+          else 
+            a.undone(href=`/${ task.id}/update`) #{ task.description }
+          a.delete(href=`/${ task.id }/delete`) Delete
+    else
+      p.task Any Task Found

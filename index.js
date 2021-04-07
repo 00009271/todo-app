@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }))
 //runing the app on port:
 app.listen(9271, (err) => {
     if (err) throw err
-    console.log(` ToDo App runes on port 9271 http://localhost:9271`)
+    console.log(` task App runes on port 9271 http://localhost:9271`)
 })
 //id generator
 function id () {
@@ -78,7 +78,7 @@ app.get('/:id/delete', (req, res) => {
   
       const tasks = JSON.parse(data)
   
-      const filteredtasks = tasks.filter(todo => todo.id != id)
+      const filteredtasks = tasks.filter(task => task.id != id)
   
       fs.writeFile(DB, JSON.stringify(filteredtasks), (err) => {
         if (err) throw err
@@ -86,4 +86,29 @@ app.get('/:id/delete', (req, res) => {
         res.render('index', { tasks: filteredtasks, deleted: true })
       })
     })
+})
+//updating
+app.get('/:id/update', (req, res) => {
+  const id = req.params.id
+
+  fs.readFile(DB, (err, data) => {
+    if (err) throw err
+    
+    const tasks = JSON.parse(data)
+    const task = tasks.filter(task => task.id == id)[0]
+    
+    const taskIdx = tasks.indexOf(task)
+    const splicedtask = tasks.splice(taskIdx, 1)[0]
+    
+    splicedtask.done = true
+    
+    tasks.push(splicedtask)
+
+    fs.writeFile(DB, JSON.stringify(tasks), (err) => {
+      if (err) throw err
+
+      res.render('home', { tasks: tasks })
+    })
+  })
+    
 })
