@@ -15,6 +15,7 @@ DEPENDENCIES:
 GitHub SourceCode
 https://github.com/00009271/todo-app.git --code
 https://github.com/00009271/todo-app  -----repository link
+https://nifty-agreeable-carol.glitch.me/ ---hosted glitch app link
 
 STRUCTURE
 database folder -- contains db.json file used for storing user input
